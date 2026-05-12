@@ -1,346 +1,87 @@
-\---
+# 🛡️ NetSentinel
 
+A real-time Network Intrusion Detection System (IDS) built with Python.
 
+> ⚠️ **WARNING:** Use only on networks you are authorized to monitor.
 
-\## ⚙️ Installation
+---
 
+## 🔥 Features
 
+- **SYN Flood Detection** → Detects TCP SYN flood attacks in real-time
+- **Port Scan Detection** → Identifies port scanning attempts
+- **Brute Force Detection** → Monitors SSH, FTP, RDP, VNC, Telnet
+- **ICMP Flood Detection** → Detects ping flood / ping of death
+- **ARP Spoofing Detection** → Identifies ARP poisoning attacks
+- **DNS Anomaly Detection** → Detects DNS flood attacks
+- **HTML Report Generation** → Beautiful visual reports
+- **Real-time Alerting** → Instant alerts with severity levels
+- **Configurable Rules** → JSON-based rule configuration
+
+---
+
+## ⚙️ Installation
 
 ```bash
-
 git clone https://github.com/berfin-sec/NetSentinel.git
-
 cd NetSentinel
-
 pip install -r requirements.txt
-
 ```
 
+> **Windows users:** Install [Npcap](https://npcap.com/#download) for packet capture support.
 
+---
 
-\---
-
-
-
-\## 🚀 Usage
-
-
+## 🚀 Usage
 
 ```bash
-
-\# Basic usage (auto-detect interface)
-
+# Basic usage
 python netsentinel.py
 
-
-
-\# Specify network interface
-
+# Specify network interface
 python netsentinel.py -i eth0
 
+# Capture 100 packets and generate report
+python netsentinel.py -c 100 --report
 
-
-\# Generate HTML report after capture
-
-python netsentinel.py -i eth0 --report
-
-
-
-\# Custom config file
-
+# Custom config file
 python netsentinel.py --config rules/custom.json
-
-
-
-\# Capture only 1000 packets
-
-python netsentinel.py -c 1000 --report
-
 ```
 
+---
 
-
-\---
-
-
-
-\## 🚨 Alert Severity Levels
-
-
+## 🚨 Alert Severity Levels
 
 | Level | Description |
-
 |-------|-------------|
-
 | 🔵 LOW | Informational alerts |
-
 | 🟡 MEDIUM | Suspicious activity |
-
 | 🟠 HIGH | Likely attack detected |
-
 | 🔴 CRITICAL | Active attack in progress |
 
+---
 
-
-\---
-
-
-
-\## ⚙️ Configuration
-
-
+## ⚙️ Configuration
 
 Edit `rules/config.json` to customize detection thresholds:
 
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| syn_threshold | 100 | SYN packets to trigger alert |
+| port_scan_threshold | 20 | Unique ports to trigger alert |
+| brute_force_threshold | 10 | Connection attempts to trigger alert |
+| icmp_threshold | 50 | ICMP packets to trigger alert |
+| dns_threshold | 50 | DNS queries to trigger alert |
 
+---
 
-```json
+## ⚠️ Legal Disclaimer
 
-{
-
-&#x20; "syn\_threshold": 100,
-
-&#x20; "syn\_window": 10,
-
-&#x20; "port\_scan\_threshold": 20,
-
-&#x20; "brute\_force\_threshold": 10,
-
-&#x20; "brute\_force\_window": 60,
-
-&#x20; "brute\_force\_ports": \[22, 21, 3389, 5900, 23],
-
-&#x20; "icmp\_threshold": 50,
-
-&#x20; "icmp\_window": 10,
-
-&#x20; "dns\_threshold": 50,
-
-&#x20; "dns\_window": 10
-
-}
-
-```
-
-
-
-\---
-
-
-
-\## 🆚 Comparison with SecToolkit
-
-
-
-| Feature | SecToolkit | NetSentinel |
-
-|---------|-----------|-------------|
-
-| Monitoring | Passive | Real-time |
-
-| Execution | Manual | Continuous |
-
-| Threats | Single check | Multi-engine |
-
-| Output | Terminal | Terminal + HTML report |
-
-| Rules | Hardcoded | Configurable JSON |
-
-
-
-\---
-
-
-
-\## ⚠️ Legal Disclaimer
-
-
-
-This tool is developed for \*\*educational purposes\*\* and \*\*ethical security research only\*\*.
-
+This tool is developed for **educational purposes** and **ethical security research only**.
 Always get proper authorization before monitoring any network.
 
+---
 
-
-\---
-
-
-
-\## 📜 License
-
-
-
-MIT License---
-
-
-
-\## ⚙️ Installation
-
-
-
-```bash
-
-git clone https://github.com/berfin-sec/NetSentinel.git
-
-cd NetSentinel
-
-pip install -r requirements.txt
-
-```
-
-
-
-\---
-
-
-
-\## 🚀 Usage
-
-
-
-```bash
-
-\# Basic usage (auto-detect interface)
-
-python netsentinel.py
-
-
-
-\# Specify network interface
-
-python netsentinel.py -i eth0
-
-
-
-\# Generate HTML report after capture
-
-python netsentinel.py -i eth0 --report
-
-
-
-\# Custom config file
-
-python netsentinel.py --config rules/custom.json
-
-
-
-\# Capture only 1000 packets
-
-python netsentinel.py -c 1000 --report
-
-```
-
-
-
-\---
-
-
-
-\## 🚨 Alert Severity Levels
-
-
-
-| Level | Description |
-
-|-------|-------------|
-
-| 🔵 LOW | Informational alerts |
-
-| 🟡 MEDIUM | Suspicious activity |
-
-| 🟠 HIGH | Likely attack detected |
-
-| 🔴 CRITICAL | Active attack in progress |
-
-
-
-\---
-
-
-
-\## ⚙️ Configuration
-
-
-
-Edit `rules/config.json` to customize detection thresholds:
-
-
-
-```json
-
-{
-
-&#x20; "syn\_threshold": 100,
-
-&#x20; "syn\_window": 10,
-
-&#x20; "port\_scan\_threshold": 20,
-
-&#x20; "brute\_force\_threshold": 10,
-
-&#x20; "brute\_force\_window": 60,
-
-&#x20; "brute\_force\_ports": \[22, 21, 3389, 5900, 23],
-
-&#x20; "icmp\_threshold": 50,
-
-&#x20; "icmp\_window": 10,
-
-&#x20; "dns\_threshold": 50,
-
-&#x20; "dns\_window": 10
-
-}
-
-```
-
-
-
-\---
-
-
-
-\## 🆚 Comparison with SecToolkit
-
-
-
-| Feature | SecToolkit | NetSentinel |
-
-|---------|-----------|-------------|
-
-| Monitoring | Passive | Real-time |
-
-| Execution | Manual | Continuous |
-
-| Threats | Single check | Multi-engine |
-
-| Output | Terminal | Terminal + HTML report |
-
-| Rules | Hardcoded | Configurable JSON |
-
-
-
-\---
-
-
-
-\## ⚠️ Legal Disclaimer
-
-
-
-This tool is developed for \*\*educational purposes\*\* and \*\*ethical security research only\*\*.
-
-Always get proper authorization before monitoring any network.
-
-
-
-\---
-
-
-
-\## 📜 License
-
-
+## 📜 License
 
 MIT License
-
