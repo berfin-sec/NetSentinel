@@ -1,0 +1,18 @@
+{
+  "syn_threshold": 100,
+  "syn_window": 10,
+  "port_scan_threshold": 20,
+  "brute_force_threshold": 10,
+  "brute_force_window": 60,
+  "brute_force_ports": [
+    22,
+    21,
+    3389,
+    5900,
+    23
+  ],
+  "icmp_threshold": 50,
+  "icmp_window": 10,
+  "dns_threshold": 50,
+  "dns_window": 10
+}
